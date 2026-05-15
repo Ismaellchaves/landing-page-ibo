@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>IBO • Catálogo Oficial</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+--bg:#050816;
+--card:rgba(255,255,255,.05);
+--line:rgba(255,255,255,.08);
+--cyan:#00e5ff;
+--purple:#8b5cf6;
+--text:#ffffff;
+--muted:#9ea7c4;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+scrollbar-width:none;
+-ms-overflow-style:none;
+}
+
+body{
+font-family:'Inter',sans-serif;
+background:var(--bg);
+color:white;
+overflow-x:hidden;
+}
+
+body::-webkit-scrollbar{
+display:none;
+}
+
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:
+linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+background-size:50px 50px;
+z-index:-2;
+}
+
+.background-glow{
+position:fixed;
+inset:0;
+z-index:-1;
+background:
+radial-gradient(circle at top left, rgba(0,229,255,.12), transparent 40%),
+radial-gradient(circle at bottom right, rgba(139,92,246,.12), transparent 40%);
+}
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+z-index:999;
+backdrop-filter:blur(20px);
+background:rgba(5,8,22,.72);
+border-bottom:1px solid var(--line);
+}
+
+.nav-container{
+max-width:1450px;
+margin:auto;
+padding:18px 24px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:14px;
+}
+
+.logo img{
+width:52px;
+filter:brightness(5);
+}
+
+.logo h1{
+font-size:1.8rem;
+font-weight:900;
+background:linear-gradient(90deg,var(--cyan),white);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.nav-links{
+display:flex;
+gap:32px;
+}
+
+.nav-links a{
+text-decoration:none;
+color:#dbe3ff;
+transition:.3s;
+font-weight:500;
+}
+
+.nav-links a:hover{
+color:var(--cyan);
+}
+
+.nav-btn{
+padding:14px 24px;
+border:none;
+border-radius:16px;
+background:linear-gradient(90deg,var(--cyan),var(--purple));
+color:white;
+font-weight:800;
+cursor:pointer;
+box-shadow:0 0 30px rgba(0,229,255,.2);
+}
+
+.hero{
+padding:180px 24px 120px;
+}
+
+.hero-container{
+max-width:1450px;
+margin:auto;
+text-align:center;
+}
+
+.hero-badge{
+display:inline-flex;
+padding:12px 18px;
+border-radius:999px;
+background:rgba(0,229,255,.08);
+border:1px solid rgba(0,229,255,.2);
+color:var(--cyan);
+font-weight:700;
+margin-bottom:30px;
+}
+
+.hero h2{
+font-size:5rem;
+line-height:1;
+margin-bottom:30px;
+font-weight:900;
+}
+
+.hero h2 span{
+background:linear-gradient(90deg,var(--cyan),white,var(--purple));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero p{
+max-width:950px;
+margin:auto;
+color:var(--muted);
+line-height:2;
+font-size:1.08rem;
+}
+
+.catalog{
+padding:0 24px 120px;
+}
+
+.catalog-grid{
+max-width:1450px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:40px;
+}
+
+.catalog-card{
+display:grid;
+grid-template-columns:500px 1fr;
+gap:40px;
+padding:40px;
+border-radius:40px;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(20px);
+position:relative;
+overflow:hidden;
+transition:.4s;
+}
+
+.catalog-card::before{
+content:"";
+position:absolute;
+inset:0;
+background:
+linear-gradient(135deg,
+rgba(0,229,255,.08),
+transparent 50%,
+rgba(139,92,246,.08));
+opacity:0;
+transition:.4s;
+}
+
+.catalog-card:hover::before{
+opacity:1;
+}
+
+.catalog-card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 50px rgba(0,229,255,.12);
+border-color:rgba(0,229,255,.22);
+}
+
+.catalog-image{
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+}
+
+.catalog-image::before{
+content:"";
+position:absolute;
+width:350px;
+height:350px;
+border-radius:50%;
+background:radial-gradient(circle,
+rgba(0,229,255,.18),
+transparent 70%);
+filter:blur(40px);
+}
+
+.catalog-image img{
+width:100%;
+max-width:400px;
+position:relative;
+z-index:2;
+filter:
+brightness(5)
+grayscale(1)
+drop-shadow(0 0 40px rgba(0,229,255,.2));
+}
+
+.catalog-content{
+position:relative;
+z-index:2;
+}
+
+.model-tag{
+display:inline-flex;
+padding:10px 16px;
+border-radius:999px;
+background:rgba(0,229,255,.08);
+border:1px solid rgba(0,229,255,.2);
+color:var(--cyan);
+font-weight:700;
+margin-bottom:24px;
+}
+
+.catalog-content h3{
+font-size:3rem;
+margin-bottom:20px;
+}
+
+.catalog-content p{
+color:var(--muted);
+line-height:2;
+margin-bottom:30px;
+font-size:1rem;
+}
+
+.spec-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:18px;
+margin-bottom:30px;
+}
+
+.spec-item{
+padding:18px;
+border-radius:18px;
+background:rgba(255,255,255,.03);
+border:1px solid rgba(255,255,255,.06);
+}
+
+.spec-item strong{
+display:block;
+margin-bottom:8px;
+font-size:1rem;
+}
+
+.spec-item span{
+color:var(--muted);
+font-size:.95rem;
+}
+
+.tech-list{
+display:flex;
+flex-wrap:wrap;
+gap:14px;
+margin-bottom:35px;
+}
+
+.tech-list div{
+padding:14px 18px;
+border-radius:16px;
+background:rgba(255,255,255,.03);
+border:1px solid rgba(255,255,255,.06);
+font-size:.92rem;
+font-weight:600;
+}
+
+.catalog-footer{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.price{
+font-size:3rem;
+font-weight:900;
+}
+
+.price span{
+font-size:1rem;
+color:var(--muted);
+}
+
+.catalog-buttons{
+display:flex;
+gap:18px;
+flex-wrap:wrap;
+}
+
+.primary-btn{
+padding:18px 26px;
+border:none;
+border-radius:18px;
+background:linear-gradient(90deg,var(--cyan),var(--purple));
+color:white;
+font-weight:800;
+cursor:pointer;
+}
+
+.secondary-btn{
+padding:18px 26px;
+border-radius:18px;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+color:white;
+cursor:pointer;
+}
+
+.comparison{
+padding:0 24px 120px;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:70px;
+}
+
+.section-title span{
+color:var(--cyan);
+font-weight:700;
+letter-spacing:2px;
+}
+
+.section-title h3{
+font-size:3.5rem;
+margin-top:18px;
+}
+
+.compare-box{
+max-width:1450px;
+margin:auto;
+padding:40px;
+border-radius:40px;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+overflow:auto;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+min-width:900px;
+}
+
+th{
+padding:22px;
+text-align:left;
+background:rgba(255,255,255,.04);
+font-size:1.1rem;
+}
+
+td{
+padding:22px;
+border-top:1px solid rgba(255,255,255,.06);
+color:var(--muted);
+}
+
+.highlight{
+color:var(--cyan);
+font-weight:700;
+}
+
+.cta{
+padding:0 24px 120px;
+}
+
+.cta-box{
+max-width:1450px;
+margin:auto;
+padding:80px;
+border-radius:40px;
+text-align:center;
+background:
+linear-gradient(135deg,
+rgba(0,229,255,.12),
+rgba(139,92,246,.12));
+border:1px solid rgba(255,255,255,.08);
+position:relative;
+overflow:hidden;
+}
+
+.cta-box::before{
+content:"";
+position:absolute;
+width:500px;
+height:500px;
+background:radial-gradient(circle,
+rgba(0,229,255,.16),
+transparent 70%);
+top:-200px;
+right:-150px;
+}
+
+.cta-box h3{
+font-size:3.5rem;
+margin-bottom:22px;
+position:relative;
+}
+
+.cta-box p{
+max-width:900px;
+margin:auto;
+line-height:2;
+color:#dbe3ff;
+margin-bottom:35px;
+position:relative;
+}
+
+footer{
+padding:80px 24px;
+border-top:1px solid rgba(255,255,255,.08);
+text-align:center;
+color:var(--muted);
+}
+
+@media(max-width:1100px){
+
+.catalog-card{
+grid-template-columns:1fr;
+}
+
+.hero h2{
+font-size:3.5rem;
+}
+
+.section-title h3{
+font-size:2.6rem;
+}
+
+}
+
+@media(max-width:768px){
+
+.nav-links{
+display:none;
+}
+
+.hero{
+padding-top:150px;
+}
+
+.hero h2{
+font-size:2.7rem;
+}
+
+.catalog-content h3{
+font-size:2.2rem;
+}
+
+.spec-grid{
+grid-template-columns:1fr;
+}
+
+.catalog-footer{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.cta-box{
+padding:50px 24px;
+}
+
+.cta-box h3{
+font-size:2.2rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="background-glow"></div>
+
+<nav>
+
+<div class="nav-container">
+
+<div class="logo">
+<img src="img/ibo.png">
+<h1>IBO</h1>
+</div>
+
+<div class="nav-links">
+<a href="#">Início</a>
+<a href="#">Tecnologias</a>
+<a href="#">Catálogo</a>
+<a href="#">Comparativo</a>
+<a href="#">Contato</a>
+</div>
+
+<button class="nav-btn">
+Solicitar Proposta
+</button>
+
+</div>
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-container">
+
+<div class="hero-badge">
+⚡ CATÁLOGO OFICIAL • IBO SERIES 2026
+</div>
+
+<h2>
+Explore toda a linha <span>IBO Enterprise</span>
+</h2>
+
+<p>
+Conheça os três modelos oficiais da linha IBO desenvolvidos para automação,
+rastreamento, inteligência artificial e aplicações profissionais.
+Cada versão foi criada para diferentes cenários operacionais,
+desde automação local até telemetria corporativa em tempo real.
+</p>
+
+</div>
+
+</section>
+
+<section class="catalog">
+
+<div class="catalog-grid">
+
+<!-- IBO DESKTOP -->
+
+<div class="catalog-card">
+
+<div class="catalog-image">
+
+<img src="img/ibo-black.png">
+
+</div>
+
+<div class="catalog-content">
+
+<div class="model-tag">
+IBO DESKTOP
+</div>
+
+<h3>Central Inteligente de Automação</h3>
+
+<p>
+O IBO Desktop foi desenvolvido para ambientes internos,
+laboratórios, automação industrial e integração inteligente.
+Seu hardware compacto entrega alta performance para controle
+de sensores, processamento local e monitoramento contínuo.
+Ideal para aplicações de IA embarcada e dashboards em tempo real.
+</p>
+
+<div class="spec-grid">
+
+<div class="spec-item">
+<strong>Processador</strong>
+<span>ESP32-C3 Performance Edition</span>
+</div>
+
+<div class="spec-item">
+<strong>Conectividade</strong>
+<span>Wi-Fi + Bluetooth 5.0</span>
+</div>
+
+<div class="spec-item">
+<strong>Uso Principal</strong>
+<span>Automação e Controle</span>
+</div>
+
+<div class="spec-item">
+<strong>Atualizações</strong>
+<span>OTA Wireless System</span>
+</div>
+
+</div>
+
+<div class="tech-list">
+<div>Dashboard Web</div>
+<div>IoT Automation</div>
+<div>Cloud Sync</div>
+<div>Machine Learning</div>
+<div>Voice Commands</div>
+<div>Sensor Hub</div>
+</div>
+
+<div class="catalog-footer">
+
+<div class="price">
+R$ 349<span>,90</span>
+</div>
+
+<div class="catalog-buttons">
+<button class="primary-btn">
+Comprar Agora
+</button>
+
+<button class="secondary-btn">
+Ficha Técnica
+</button>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- IBO MOBILE -->
+
+<div class="catalog-card">
+
+<div class="catalog-image">
+
+<img src="img/ibo-black.png">
+
+</div>
+
+<div class="catalog-content">
+
+<div class="model-tag">
+IBO MOBILE
+</div>
+
+<h3>Portabilidade Inteligente</h3>
+
+<p>
+A versão Mobile entrega mobilidade avançada com bateria integrada,
+monitoramento remoto e comunicação em tempo real.
+Projetado para operações externas, aplicações móveis,
+rastreamento inteligente e controle remoto através do app IBO Cloud.
+</p>
+
+<div class="spec-grid">
+
+<div class="spec-item">
+<strong>Bateria</strong>
+<span>Longa duração inteligente</span>
+</div>
+
+<div class="spec-item">
+<strong>Conectividade</strong>
+<span>Wi-Fi + Bluetooth + App</span>
+</div>
+
+<div class="spec-item">
+<strong>Monitoramento</strong>
+<span>Tempo real remoto</span>
+</div>
+
+<div class="spec-item">
+<strong>Portabilidade</strong>
+<span>Ultra Compact Design</span>
+</div>
+
+</div>
+
+<div class="tech-list">
+<div>GPS Tracking</div>
+<div>Cloud Access</div>
+<div>Mobile App</div>
+<div>AI Assistant</div>
+<div>Wireless Sync</div>
+<div>Telemetry</div>
+</div>
+
+<div class="catalog-footer">
+
+<div class="price">
+R$ 479<span>,90</span>
+</div>
+
+<div class="catalog-buttons">
+<button class="primary-btn">
+Comprar Agora
+</button>
+
+<button class="secondary-btn">
+Ficha Técnica
+</button>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- IBO GPS PRO -->
+
+<div class="catalog-card">
+
+<div class="catalog-image">
+
+<img src="img/ibo-black.png">
+
+</div>
+
+<div class="catalog-content">
+
+<div class="model-tag">
+IBO GPS PRO
+</div>
+
+<h3>Telemetria e IA Corporativa</h3>
+
+<p>
+O modelo GPS PRO representa o nível máximo da linha IBO.
+Desenvolvido para empresas, rastreamento avançado,
+telemetria corporativa e análise inteligente de dados em tempo real.
+Integra GPS de alta precisão, cloud analytics e IA analítica.
+</p>
+
+<div class="spec-grid">
+
+<div class="spec-item">
+<strong>GPS</strong>
+<span>GNSS Alta Precisão</span>
+</div>
+
+<div class="spec-item">
+<strong>Cloud</strong>
+<span>Analytics em tempo real</span>
+</div>
+
+<div class="spec-item">
+<strong>IA</strong>
+<span>AI Data Analysis</span>
+</div>
+
+<div class="spec-item">
+<strong>Telemetria</strong>
+<span>Enterprise Tracking</span>
+</div>
+
+</div>
+
+<div class="tech-list">
+<div>Real-Time GPS</div>
+<div>AI Analytics</div>
+<div>Enterprise Cloud</div>
+<div>Fleet Tracking</div>
+<div>Data Intelligence</div>
+<div>Advanced Telemetry</div>
+</div>
+
+<div class="catalog-footer">
+
+<div class="price">
+R$ 649<span>,90</span>
+</div>
+
+<div class="catalog-buttons">
+<button class="primary-btn">
+Pré-venda
+</button>
+
+<button class="secondary-btn">
+Ficha Técnica
+</button>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="comparison">
+
+<div class="section-title">
+
+<span>COMPARATIVO</span>
+
+<h3>Escolha o IBO ideal</h3>
+
+</div>
+
+<div class="compare-box">
+
+<table>
+
+<tr>
+<th>Recursos</th>
+<th>IBO Desktop</th>
+<th>IBO Mobile</th>
+<th>IBO GPS PRO</th>
+</tr>
+
+<tr>
+<td>Automação Inteligente</td>
+<td class="highlight">Sim</td>
+<td class="highlight">Sim</td>
+<td class="highlight">Sim</td>
+</tr>
+
+<tr>
+<td>Bateria Integrada</td>
+<td>Não</td>
+<td class="highlight">Sim</td>
+<td class="highlight">Sim</td>
+</tr>
+
+<tr>
+<td>GPS Avançado</td>
+<td>Básico</td>
+<td>Médio</td>
+<td class="highlight">Profissional</td>
+</tr>
+
+<tr>
+<td>Cloud Dashboard</td>
+<td class="highlight">Sim</td>
+<td class="highlight">Sim</td>
+<td class="highlight">Enterprise</td>
+</tr>
+
+<tr>
+<td>IA Analítica</td>
+<td>Básica</td>
+<td>Intermediária</td>
+<td class="highlight">Avançada</td>
+</tr>
+
+<tr>
+<td>Uso Recomendado</td>
+<td>Automação</td>
+<td>Mobilidade</td>
+<td>Corporativo</td>
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+<section class="cta">
+
+<div class="cta-box">
+
+<h3>Pronto para transformar seu projeto?</h3>
+
+<p>
+A linha IBO foi criada para empresas, integradores,
+desenvolvedores e projetos que exigem inteligência,
+telemetria e automação profissional.
+Solicite agora uma demonstração personalizada.
+</p>
+
+<button class="primary-btn">
+Solicitar Demonstração
+</button>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 IBO Technologies • Catálogo Oficial Enterprise Series
+
+</footer>
+
+</body>
+</html>
